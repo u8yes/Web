@@ -21,6 +21,85 @@
 <head>
 <meta charset="UTF-8">
 <title>jQuery 태그 구조</title>
+
+<style type="text/css">
+
+
+</style>
+
+<!-- 방법1. 직접 다운로드, src=""는 외부로 import해준다. 
+기능을 사용하려면 반드시 js 밑으로 실행할 함수, 예제들을 넣어야 한다. -->
+<script src="./js/jquery-3.6.1.min.js"></script>	 
+
+
+<!-- 방법2. CDN 방식, 네트워크로 직접 접근해서 다운로드 받음.(인터넷 연결 필요) 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+-->
+<script type="text/javascript">
+/* 
+jQuery(document).ready(function(){
+	alert("First Ready");
+});
+*/
+$(function(){
+/* 1. 라이브러리 포함 방법 : 2가지 방식
+	- 방법1, 방법2 참조
+*/
+
+/* 2. jQuery를 사용한 웹 페이지 형식 ($가 jQuery이다, document는 자료형
+		, ready는 </body>를 다 읽고 끝난 시점에 function(){css문법}실행하게끔 대기)
+		
+	- $(document).ready(function(){});
+		. 문서가 준비 완료되면 매개변수로 전달된 함수를 실행하라는 의미.
+		. $(function(){});	// 간단한 형식 정의.(워낙 많이 사용해서)
+	alert("First Ready");
+*/	
+
+/* 3. jQuery 기본 선택자
+	var headers = document.getElementsByTagName("h1");		// var은 배열로 담아준다.
+	
+	headers[0].innerHTML = '더조은';
+	headers[1].innerHTML = '컴퓨터 학원';
+	
+	1) 전체 선택자(*)
+	$('*').css('color','red');	// key, value값
+	
+	2) tag 선택자
+		- 한 개 태그 선택
+	$('p').css('color','blue');	
+		- 두 개 태그 선택
+	$('h1, p').css('color','blue');	
+	
+	3) id 선택자 // 
+	$('#target').css('color','blue');
+		
+	4) class 선택자 // 
+	$('.item').css('color','green');
+	$('h1.select').css('color','red');
+	$('.item.select').css('background','blue');
+*/
+
+/*	4. jQuery 자식(손) 선택자와 후손 선택자 
+	- 자식(손) 선택자
+	$('body > div').css('color','blue');
+	- 후손 선택자
+	$('body div').css('color','blue');
+*/
+	
+/* 5. jQuery 속성 선택자 
+	- 기본 선택자 뒤에 붙여 사용, 
+	- 입력 양식과 관련된 태그를 선택할 때 많이 사용.
+	$('input[type=text]').val('Hello jQuery..!');
+*/
+	
+
+
+
+	
+});
+		
+	
+</script>
 </head>
 <body>
 
@@ -42,7 +121,8 @@
 <!-- 3-4. 클래스 선택자 
     <h1 class="item">Header-0</h1>
     <h1 class="item select">Header-1</h1>
-    <h1 class="item">Header-2</h1>
+    <h1 class="">Header-2</h1>
+    <h2 class="select">Header-2</h1>
     <hr>
 -->
 

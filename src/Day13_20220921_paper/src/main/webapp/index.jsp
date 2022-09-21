@@ -22,24 +22,61 @@
 			<td><input type="tel" formmethod="post"></td>
 		</tr>
 		<tr>
-			<th>직원</th>
-			<td><input type="" formmethod="post"></td>
+			<th>직업</th>
+			<td>
+			<select>
+				<option>학생</option>
+				<option>직장</option>
+				<option>주부</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<th>성별</th>
-			<td><input type="" formmethod="post"></td>
+			<td>
+			
+			<div>
+			  <input type="radio" value="남성" id="inlineRadio1" name="gender">
+			  <label for="inlineRadio1">남성</label>
+			
+			  <input type="radio" value="여성" id="inlineRadio2" name="gender">
+			  <label for="inlineRadio2">여성</label>
+			</div>
+			
 		</tr>
 		<tr>
 			<th>취미</th>
-			<td><input type="" formmethod="post"></td>
+			<td>
+			<div class="form-check form-check-inline">
+			  <input type="checkbox">
+			  <label class="form-check-label" for="inlineRadio1">바둑</label>
+			
+			  <input type="checkbox">
+			  <label class="form-check-label" for="inlineRadio1">게임</label>
+			
+			  <input type="checkbox">
+			  <label class="form-check-label" for="inlineRadio1">낚시</label>
+			
+			  <input type="checkbox">
+			  <label class="form-check-label" for="inlineRadio1">독서</label>
+			</div>
+			</td>
 		</tr>
 		<tr>
 			<th>자기 소개하는 글</th>
-			<td><input type="" formmethod="post"></td>
+			<td><input type="text" formmethod="post" value="자기를 소개하는 글을 쓰세요."></td>
 		</tr>
 	</table>
 	</div>
 	
+	
+	<div>
+		<label></label>
+		<div class="col-sm-5 d-flex justify-content-around">
+		<input type="submit" class="btn btn-secondary" value="등록">
+		<input type="reset" class="btn btn-dark" value="취소" onclick="reset()">			 
+		</div>
+	</div>
 	
 </body>
 </html>
