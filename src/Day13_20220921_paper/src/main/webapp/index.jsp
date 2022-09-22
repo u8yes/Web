@@ -25,14 +25,18 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 -->
 <script type="text/javascript">
-$(document).ready(function(){
 
-	alert();
-});
-
-<SCRIPT language="javaScript">
-
-
+	function onClick(){
+		
+		$('div').click(function(){
+			var header = $('th', this).text();
+			var paragraph = $('td', this).text();
+			
+			alert(header + ' : ' + paragraph);
+		});
+		
+		
+	}
 
 </SCRIPT>
 </script>
@@ -110,8 +114,8 @@ $(document).ready(function(){
 		
 			<label></label>
 			
-			<input type="submit" onsubmit="" class="btn btn-secondary" value="등록" >
-			<input type="reset" class="btn btn-dark" value="취소">			 
+			<input type="submit" onmousedown="onClick()" class="btn btn-secondary" value="등록" >
+			<input type="reset" class="" value="취소">			 
 				
 		
 			</th>

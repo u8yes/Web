@@ -37,7 +37,7 @@
 // - on()
 // - 사용 형태
 //    1) $(selector).on(eventName, function(event){ });
-
+// 
 		$(function(){
 			// 이벤트 연결
 			$('h1').on('click', function(event){
@@ -45,8 +45,8 @@
 					return html + '+';
 				});
 			});
-		});
-
+		}); 	// h1 = this 자신에다가 출력해줘
+		
 //    2) $(selector).on(object);
 
 		$(function(){
@@ -55,7 +55,7 @@
 				mouseleave: function(){$(this).removeClass('reverse');}
 			});
 		});
-// */
+		*/
 
 /* 2. 이벤트 연결2 
 // - hover():mouseenter 이벤트와 mouseleave 이벤트를 동시에 연결.
@@ -68,8 +68,8 @@
 				$(this).removeClass('reverse');
 			});
 	});
-// */
 
+// */
 /* 3. 이벤트 제거 
 // - off()   ---> one()
 	$(function(){
@@ -87,6 +87,7 @@
 // - $(selector, context)
 //   . context:selector가 적용하는 범위를 한정.
 //   . 특정 부분의 선택자를 선택하고 싶을 때 사용하는 매개변수.
+// HTML태그를 자바스크립트에서는 도큐먼트 객체라고 부른다.
 
 	$(function(){
 		// 이벤트 연결
@@ -97,7 +98,7 @@
 			alert(header + ' : ' + paragraph);
 		});
 	});
-// */
+// */	
 
 /* 5. 이벤트 강제 발생 
 // - 사용 형태
@@ -115,23 +116,27 @@
 			//$('h1').last().trigger('click');
 			$('h1').last().click();
 		}, 1000);
-		
 	});
 
+	
 //   2) $(selector).trigger(eventName, data);
 
 	$(function(){
 		$('h1').click(function(event, data1, data2){
 			alert(data1+' : '+data2);
 		});
-		
+		 
 		// 강제로 이벤트 발생
 		$('h1').eq(0).trigger('click', [273, 52]);
 	});
-// */
 
+// */	
+	
+/* 6. 기본 이벤트 제거, 익스플로러8버전에서는 window.event가 new 해서 참조변수를 담을 수 있지만 event는 담을 수 없다. 
+ 
+ //다른 모든 버전은 event로 new 해서 참조변수가 담아진다.
+ 
 
-/* 6. 기본 이벤트 제거 
 	$(function(){
 		$('a').click(function(event){
 			var e = event || window.event;
@@ -151,6 +156,7 @@
 			$(this).css('background-color', 'red');
 		});
 	});
+
 // */
 
 /* 7. 이벤트 통합 메서드 
@@ -206,7 +212,6 @@
 		});
 	});
 // */
-
 
 </script>
 </head>
