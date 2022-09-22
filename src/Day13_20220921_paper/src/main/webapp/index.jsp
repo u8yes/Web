@@ -6,19 +6,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-
 <style>
+	tr{
+		height: 50px;
+	}
 
-
+	table{
+		background-color: gray;
+	}
 
 </style>
+<!-- 방법1. 직접 다운로드, src=""는 외부로 import해준다. 
+기능을 사용하려면 반드시 js 밑으로 실행할 함수, 예제들을 넣어야 한다. -->
+<script src="./js/jquery-3.6.1.min.js"></script>
 
+
+<!-- 방법2. CDN 방식, 네트워크로 직접 접근해서 다운로드 받음.(인터넷 연결 필요) 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+-->
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+});
+</script>
 </head>
 <body>
-	<div>
-	<form>
-	<table border-color="green" border="1" width="700">
+
+	<center>
+	<div style="padding-top: 150px;">
+	
+	<form action="" method="post">
+	<table border-color="green" border="1" width="800">
 		<tr>
 			<th>이름</th>
 			<td><input type="text" formmethod="post"></td>
@@ -63,35 +82,43 @@
 			<td>
 			<div class="form-check form-check-inline">
 			  <input type="checkbox">
-			  <label class="form-check-label" for="inlineRadio1">바둑</label>
+			  <label class="" for="inlineRadio1">바둑</label>
 			
 			  <input type="checkbox">
-			  <label class="form-check-label" for="inlineRadio1">게임</label>
+			  <label class="" for="inlineRadio1">게임</label>
 			
 			  <input type="checkbox">
-			  <label class="form-check-label" for="inlineRadio1">낚시</label>
+			  <label class="" for="inlineRadio1">낚시</label>
 			
 			  <input type="checkbox">
-			  <label class="form-check-label" for="inlineRadio1">독서</label>
+			  <label class="" for="inlineRadio1">독서</label>
 			</div>
 			</td>
 		</tr>
 		<tr>
 			<th>자기 소개하는 글</th>
-			<td><input type="text" formmethod="post" value="자기를 소개하는 글을 쓰세요."></td>
+			<td><textarea name="title" rows="5" cols="90" class="" >자기를 소개하는 글을 쓰세요.</textarea></td>
 		</tr>
+		<tr>
+			<th colspan="2">
+		
+			<label></label>
+			
+			<input type="submit" class="btn btn-secondary" value="등록">
+			<input type="reset" class="btn btn-dark" value="취소" onclick="reset()">			 
+				
+		
+			</th>
+		</tr>
+	
+	
+	
 	</table>
 	</form>
 	</div>
 	
 	
-	<div>
-		<label></label>
-		<div class="col-sm-5 d-flex justify-content-around">
-		<input type="submit" class="btn btn-secondary" value="등록">
-		<input type="reset" class="btn btn-dark" value="취소" onclick="reset()">			 
-		</div>
-	</div>
 	
+	</center>
 </body>
 </html>

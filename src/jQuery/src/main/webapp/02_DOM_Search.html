@@ -22,7 +22,7 @@
 				color:'white'
 			});
 		});
-
+		
 		// filter() 메서드 적용 형태1.
 		$(function(){
 			$('h3').filter(':even').css({
@@ -30,26 +30,30 @@
 				color:'white'
 			});
 		});
-	
-		// filter() 메서드 적용 형태2.
-		$(function(){
+				
+		// filter() 메서드 적용 형태2.	// index는 var 변수
+		$(document).ready(function(){
 			$('h3').filter(function(index){
-				return index % 3 == 0;
+				return index % 3 == 0;	// return true 반환되면 선택하겠다.
 			}).css({
-				backgroundColor:'black',
+				background:'black',
 				color:'white'
 			});
+			
+			
 		});
-// */
+// */		
 
 /* 2. 문서 객체 탐색 종료 
 	// 예제1.
-	// 체이닝을 사용해 한 줄로 서로 다른 문서 객체에 스타일 적용 가능
+	// 체이닝(연속적으로 선택)을 사용해 한 줄로 서로 다른 문서 객체에 스타일 적용 가능
 	
 	$(function(){
 		$('h3').css('background', 'orange').filter(':even').css('color', 'red');
 	});
-
+	
+	
+	 
 	// 예제2.
 	$(function(){
 		$('h3').css('background', 'orange');
@@ -57,41 +61,43 @@
 		$('h3:odd').css('color', 'red');
 	});
 	
+
+	
 	// 예제3.
 	// 체이닝을 이용한 예제2의 표현
 	// end() : 문서 객체 선택을 한 단계 뒤로 돌림.
 		$(function(){
-			$('h3').css('background', 'orange').filter(':even').css('color',
-					'white').filter(':odd').css('color', 'red');
 			//$('h3').css('background', 'orange').filter(':even').css('color',
-			//		'white').end().filter(':odd').css('color', 'red');
+			//		'white').filter(':odd').css('color', 'red');
+			$('h3').css('background', 'orange').filter(':even').css('color',
+					'white').end().filter(':odd').css('color', 'red');
 		});
 // */
-
-/* 3. 특정 위치의 문서 객체 선택 
+/*	
+	3. 특정 위치의 문서 객체 선택 
 //  - eq(n) : n번째 위치에 존재하는 문서 객체를 선택.
 //  - first() : 첫번째 위치하는 문서 객체를 선택.
 //  - last() : 마지막에 위치하는 문서 객체를 선택.
 
 	$(function(){
 		$('h3').eq(3).css('background', 'orange');
-		$('h3').eq(-2).css('background', 'red');
+		$('h3').eq(-2).css('background', 'red');	// 뒤에서 2번째를 말한다.
 		$('h3').first().css('background', 'green');
 		$('h3').last().css('background', 'blue');
 	});
-// */
 
+// */
 /* 4. 문서 객체 추가 선택 
 	// - add() : 기존 문서 객체를 포함하여 추가로 문서 객체를 선택.
-	
-	$(function(){
-		$('h1').css('background', 'gray').add('h2').css('color', 'red');
-	});
-// */
 
+	$(function(){
+		$('h1').css('background', 'gray').add('h2').css('color', 'red');	// h2에서 add처리를 해도 h1도 포함된다.
+	});
+
+// */
 /* 5. 문서 객체의 특징 판별 
 //   - is() : 문서 객체의 특징 판별.
-
+// */
 	$(function(){
 		$('h1').each(function(){
 			if($(this).is('.select')){
@@ -99,13 +105,13 @@
 			}
 		});
 	});
-// */
+
 
 </script>
 
 </head>
 <body>
-<!-- 
+<!-- 	
 	<h3>Header - 0</h3>
 	<h3>Header - 1</h3>
 	<h3>Header - 2</h3>
@@ -122,11 +128,11 @@
 	<h1>Header - 4</h1>
 -->
 
-<!-- 5. 문서 객체의 특징 판별 
+<!-- 5. 문서 객체의 특징 판별 -->
 	<h1 class="select">Header - 0</h1>
 	<h1>Header - 1</h1>
 	<h1 class="select">Header - 2</h1>
--->
+
 
 </body>
 </html>

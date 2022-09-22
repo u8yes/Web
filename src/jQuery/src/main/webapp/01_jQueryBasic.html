@@ -207,19 +207,14 @@ $(document).ready(function(){
 
 	 			
 	 			
-	 			
-	 			
-	 			
-	 			
+ 		// 예제3 : addClass() 메서드의 매개변수에 함수 전달도 가능.
+
+ 			$('h1').addClass(function(index){
+ 				return 'high-light-'+index;
+ 			});		
+				
 */	 			
 
-		// 예제3 : addClass() 메서드의 매개변수에 함수 전달도 가능.
-
-	 			$('h1').addClass(function(index){
-	 				return 'high-light-'+index;
-	 			});
-
-/*// */
 
 	/* 9. jQuery를 사용한 객체 확장 
 		// - 자바스크립트에서의 객체 속성 추가
@@ -250,14 +245,14 @@ $(document).ready(function(){
 			
 			alert(output);
 
-	// */ 
+// */	 
 
 	/* 10. jQuery 라이브러리 충돌 방지 
 	// - jQuery외 prototype 자바스크립트 라이브러리도 동일하게 $를 
 	//	    식별자로 사용. 
 	// - 따라서 두 라이브러리를 함께 사용시 충돌 발생.
 
-		// 더 이상 식별자 $를 사용할 수 없다.
+		// 더 이상 식별자 $를 사용할 수 없다.	
 		$.noConflict();
 		
 		var J = jQuery;
@@ -265,8 +260,8 @@ $(document).ready(function(){
 		J(document).ready(function(){
 			J('h1').addClass('high-light');
 		});
-	// */
-	  
+
+		// */	  
 });
 </script>
 
@@ -348,13 +343,13 @@ $(document).ready(function(){
 	<hr>
 -->
 
-<!-- 8. jQuery를 사용한 배열 관리(2) -->
+<!-- 8. jQuery를 사용한 배열 관리(2) 
 	<h1>item - 0</h1>
 	<h1>item - 1</h1>
 	<h1>item - 2</h1>
 	<h1>item - 3</h1>
 	<h1>item - 4</h1>
-
+-->
 
 </body>
 </html>
