@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+
+<!-- https://gist.github.com/coolniikou/665255 -->
+<!-- http://plugins.jquery.com/ -->
+<!-- https://github.com/jquery/plugins.jquery.com -->
+<!-- http://jquerylist.com -->
+<!-- http://datatables.net -->
+
+<head>
+<meta charset="UTF-8">
+<title>Plug In</title>
+<style>
+	* { margin: 0px; padding: 0px; }
+	ul { list-style:none; }
+	img { width: 500px; height: 350px; }
+</style>
+
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script src="js/jquery.innerfade.js"></script>
+
+<script>
+/* Plug In이란? */
+//	: 개발자가 jQuery 자체를 확장하여 사용할 수 있도록 제공해 주는 jQuery 라이브러리의 한  형태.
+
+		$(document).ready(function () {
+			$('#inner-fade').innerfade({
+				animationtype: 'fade',
+				speed: 750,
+				timeout: 2000,
+				type: 'random',
+				containerheight: '1em'
+			});
+		});
+</script>
+    
+</head>
+<body>
+    <ul id="inner-fade">
+        <li><img src="img/Desert.jpg" /></li>
+        <li><img src="img/Hydrangeas.jpg" /></li>
+        <li><img src="img/Chrysanthemum.jpg" /></li>
+        <li><img src="img/Koala.jpg" /></li>
+        <li><img src="img/Penguins.jpg" /></li>
+        <li><img src="img/Tulips.jpg" /></li>
+    </ul>
+</body>
+</html>

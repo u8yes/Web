@@ -1,0 +1,132 @@
+<!-- 
+	문서 객체 탐색 : 선택자와 관련된 추가 메서드를 살펴보자.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체 탐색</title>
+
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+
+/* 1. 기본 필터링 메서드 
+//   - filter() 메서드 사용 두 가지 형태
+//     1) $(selector).filter(selector);
+//     2) $(selector).filter(function(index){});
+	
+		// 예제:홀수번째 속성 변경.
+		$(function(){
+			$('h3:even').css({
+				backgroundColor:'black',
+				color:'white'
+			});
+		});
+
+		// filter() 메서드 적용 형태1.
+		$(function(){
+			$('h3').filter(':even').css({
+				backgroundColor:'black',
+				color:'white'
+			});
+		});
+	
+		// filter() 메서드 적용 형태2.
+		$(function(){
+			$('h3').filter(function(index){
+				return index % 3 == 0;
+			}).css({
+				backgroundColor:'black',
+				color:'white'
+			});
+		});
+// */
+
+/* 2. 문서 객체 탐색 종료 
+	// 예제1.
+	// 체이닝을 사용해 한 줄로 서로 다른 문서 객체에 스타일 적용 가능
+	
+	$(function(){
+		$('h3').css('background', 'orange').filter(':even').css('color', 'red');
+	});
+
+	// 예제2.
+	$(function(){
+		$('h3').css('background', 'orange');
+		$('h3:even').css('color', 'white');
+		$('h3:odd').css('color', 'red');
+	});
+	
+	// 예제3.
+	// 체이닝을 이용한 예제2의 표현
+	// end() : 문서 객체 선택을 한 단계 뒤로 돌림.
+		$(function(){
+			$('h3').css('background', 'orange').filter(':even').css('color',
+					'white').filter(':odd').css('color', 'red');
+			//$('h3').css('background', 'orange').filter(':even').css('color',
+			//		'white').end().filter(':odd').css('color', 'red');
+		});
+// */
+
+/* 3. 특정 위치의 문서 객체 선택 
+//  - eq(n) : n번째 위치에 존재하는 문서 객체를 선택.
+//  - first() : 첫번째 위치하는 문서 객체를 선택.
+//  - last() : 마지막에 위치하는 문서 객체를 선택.
+
+	$(function(){
+		$('h3').eq(3).css('background', 'orange');
+		$('h3').eq(-2).css('background', 'red');
+		$('h3').first().css('background', 'green');
+		$('h3').last().css('background', 'blue');
+	});
+// */
+
+/* 4. 문서 객체 추가 선택 
+	// - add() : 기존 문서 객체를 포함하여 추가로 문서 객체를 선택.
+	
+	$(function(){
+		$('h1').css('background', 'gray').add('h2').css('color', 'red');
+	});
+// */
+
+/* 5. 문서 객체의 특징 판별 
+//   - is() : 문서 객체의 특징 판별.
+
+	$(function(){
+		$('h1').each(function(){
+			if($(this).is('.select')){
+				$(this).css('color', 'red');
+			}
+		});
+	});
+// */
+
+</script>
+
+</head>
+<body>
+<!-- 
+	<h3>Header - 0</h3>
+	<h3>Header - 1</h3>
+	<h3>Header - 2</h3>
+	<h3>Header - 3</h3>
+	<h3>Header - 4</h3>
+	<h3>Header - 5</h3> 
+-->
+	
+<!-- 4. 문서 객체 추가 선택 예시 
+	<h1>Header - 0</h1>
+	<h2>Header - 1</h2>
+	<h1>Header - 2</h1>
+	<h2>Header - 3</h2>
+	<h1>Header - 4</h1>
+-->
+
+<!-- 5. 문서 객체의 특징 판별 
+	<h1 class="select">Header - 0</h1>
+	<h1>Header - 1</h1>
+	<h1 class="select">Header - 2</h1>
+-->
+
+</body>
+</html>

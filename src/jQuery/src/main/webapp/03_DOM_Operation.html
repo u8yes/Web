@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체 조작</title>
+  
+<style type="text/css">
+	.first {color:red;}
+	.second {color:pink;}
+	.third {color:orange;}
+</style>
+  
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+/* 1. 문서 객체의 클래스 속성 추가   
+// - addClass() : 문서 객체의 클래스 속성을 추가.
+
+    // 예제1. 매개변수에 문자열 입력.
+    $(document).ready(function(){
+    	$('h1').addClass('item');
+    });
+
+    // 예제2. 매개변수에 함수 입력.
+    $(document).ready(function(){
+    	$('h1').addClass(function(index){
+    		return 'item_'+index;
+    	});
+    });
+// */
+
+/* 2. 문서 객체의 클래스 속성 제거 
+// - removeClass(): 문서 객체의 클래스 속성을 제거.
+// - 여러 개의 클래스 속성 중 선택적으로 제거.
+
+	$(function(){
+    	$('h1').removeClass('item');
+    });
+// */
+
+/* 3. 문서 객체의 속성 검사 
+// - attr(): .속성과 관련된 모든 기능 수행.
+//           .첫번째 문서 객체의 속성 출력.
+
+	$(function(){
+		var src = $('img').attr('src');
+		
+		alert(src);
+	});
+// */
+
+/* 4. 문서 객체의 속성 추가 
+// - attr() 메서드 사용.
+// - 3가지 형태로 사용.
+
+//   1) $(selector).attr(name, value);
+		$(function(){
+			$('img').attr('width', '200');
+		});
+
+//   2) $(selector).attr(name, function(index){});
+		$(function(){
+			$('img').attr('width', function(index){
+				return (index + 1) * 100;
+			});
+		});
+
+//   3) $(selector).attr(object);
+		$(function(){
+			$('img').attr({
+				width:function(index){
+					return (index+1)*100;
+				},
+				height:100
+			});
+		});
+// */
+ 
+/* 5. 문서 객체의 속성 제거 
+// - removeAttr(name):문서 객체의 속성을 제거해 주는 메서드.
+
+	$(function(){
+		$('h1').removeAttr('data-index');
+	});
+// */
+
+/* 6. 문서 객체의 스타일 검사 
+// - css(): 스타일과 관련된 모든 기능을 수행.
+
+	$(function(){
+		var color = $('h1').css('color');
+		alert(color);
+	});
+// */
+
+/* 7. 문서 객체의 스타일 추가 
+//- 사용형태 3가지
+
+// 1) $(selector).css(name, value);
+
+		$(function(){
+			$('h1').css('color', 'red');
+		});
+
+// 2) $(selector).css(name, function(index) { });
+//   . 선택자로 선택한 문서 객체에 개별적으로 스타일 속성을 적용하고 싶을 때 사용하는 방법.
+
+		$(function(){
+			var color = ['red', 'green', 'blue'];
+			
+			$('h1').css('color', function(index){ 
+				return color[index];
+			});
+		});
+
+// 3) $(selector).css(object);
+
+		$(function(){
+			var color = ['red', 'green', 'blue'];
+			
+			$('h1').css({
+				color:function(index){ return color[index]; },
+				background:'black'
+			});
+		});
+// */
+
+/* 8. 문서 객체의 내부 검사 
+//- 기존 자바스크립트에서 문서 객체의 innerHTML 속성과 관련된 jQuery 메서드.
+//- 1) html(): 문서 객체 내부의 글자와 관련된 모든 기능을 수행.
+
+		$(function(){
+			var html = $('h1').html();
+			
+			alert(html);
+		});
+
+//- 2) text():
+//   . 문서 객체 내부의 글자와 관련된 모든 기능을 수행.
+//   . 선택자로 선택한 모든 문서 객체의 글자를 가져와 출력.
+
+		$(function(){
+			var text = $('h1').text();
+			
+			alert(text);
+		});
+// */
+
+/* 9. 문서 객체의 내부 추가 
+// 1) $(selector).html(value); 
+//       -> HTML 태그를 인식해 문자열 삽입.
+
+		$(function(){
+			$('div').html('<h1>$().html()</h1>');
+		});
+
+//    $(selector).text(value); 
+//       -> HTML 태그를 인식하지 않음.
+		
+		$(function(){
+			$('div').text('<h1>$().text()</h1>');
+		});
+	
+//  2) $(selector).html(function(index, html){}); 
+//     $(selector).text(function(index, html){}); 
+    
+		$(function(){
+			$('div').html(function(index){
+				return '<h1>Header - '+index+'</h1>';
+			});
+		});
+
+		$(function(){
+			$('h1').html(function(index, html){
+				return '※ '+html+' *';
+			});
+		});
+// */
+
+/* 10. 문서 객체의 내부 제거 
+// 1) remove(): 특정 문서 객체를 제거.
+// 2) empty() : 특정 문서 객체의 후손을 모두 제거.
+
+		$(function(){
+			$('h1').first().remove();
+		});
+
+		$(function(){
+			$('div').empty();
+		});
+// */
+
+/* 11. 문서 객체의 생성(1)  
+//- 텍스트 노드를 갖는 문서 객체를 생성하는 방법.
+//- $(): 문서 객체 생성.
+//- $() 함수의 매개 변수에 HTML 태그를 문자열로 넣기만 하면 문서 객체가 생성됨.
+
+//- 생성한 문서 객체를 body 태그에 추가하는 방법1.
+	//$(document).ready(function(){});
+	
+	$(function(){
+		$('<h1></h1>').html('Hello jQuery...!').appendTo('body');
+	});
+
+//- $() 메서드의 내부에 HTML 태그를 바로 넣어 body 태그에 추가하는 방법2
+
+	$(function(){
+		$('<h1>Hello jQuery...!</h1>').appendTo('body');
+	});
+// */
+
+/* 12. 문서 객체의 생성(2) 
+//- 텍스트 노드를 갖지 않는 문서 객체를 생성하는 방법.
+
+	$(function(){
+		$('<img />').attr('src', 'img/Tulips.jpg').appendTo('body');
+	});
+
+	$(function(){
+		$('<img />').attr({
+			src:'img/Tulips.jpg',
+			width:'350',
+			height:'250'
+		}).appendTo('body');
+	});
+// */
+
+/* 13. 문서 객체의 삽입(1) */
+//- $(A).appendTo(B)  : A를 B의 뒷 부분(자식 요소)에 추가한다.
+//- $(A).prependTo(B)  : A를 B의 앞 부분(자식 요소)에 추가한다.
+//- $(A).insertAfter(B)  : A를 B의 뒤(형제요소)에 추가한다.
+//- $(A).insertBefore(B)  : A를 B의 앞(형제요소)에 추가한다.
+
+
+/* 14. 문서 객체의 삽입(2) 
+//- $(A).append(B) : B를 A의 뒷 부분(자식 요소)에 추가한다.
+//- $(A).prepend(B) : B를 A의 앞 부분에 추가한다.
+//- $(A).after(B)    : B를 A의 뒤에 추가한다.
+//- $(A).before(B)   : B를 A의 앞에 추가한다.
+
+//- 모든 메서드 사용 방법 동일
+//- 1. $(selector).append(content, content, ....... , content)
+
+	$(function(){
+		var h1 = '<h1>Header 1</h1>';
+		var h2 = '<h2>Header 2</h2>';
+		
+		$('body').append(h1, h2, h1, h2);
+	});
+
+//- 2. $(selector).append(function(index, value){});
+
+	$(function(){
+		var content = ['홍길동', '김길동', '박길동'];
+		
+		$.each(content, function(index, value){
+			$('#name_region').append($('<li>'+value+'</li>'));
+		});
+	});
+
+//- 3. 
+	$(function(){
+		//$('header').after($('<div>이길동</div>'));
+		$('<div>이길동</div>').insertAfter($('header'));
+	});
+// */	
+
+/* 15. 문서 객체의 이동 
+//- 기존에 존재하는 문서 객체를 선택하고 문서 객체 삽입 메서드를 사용하면, 
+//  문서 객체를 쉽게 다른 곳으로 이동시킬 수 있다.
+
+	$(function(){
+		$('img').css('width', '250');
+		
+		setInterval(function(){
+			$('img').first().appendTo('body');
+		}, 2000);
+	});
+// */
+
+/* 16. 문서 객체의 복제 
+//- 기존 문서 객체를 선택하고 문서 객체 삽입 메서드를 사용하면, 문서 객체가 이동.
+	$(function(){
+		$('div').append($('h1'));
+	});
+
+//=========
+//- clone() : 문서 객체 복제.
+//- $(selector).clone()
+//  $(selector).clone(Boolean dataAndEvents) : true -> 이벤트까지 복제하는 deep copy
+//  $(selector).clone(Boolean dataAndEvents, Boolean deepDataAndEvents) : child까지의 복제 여부.
+              
+	$(function(){
+		$('div').append($('h1').clone());
+	});
+// */
+	
+</script>
+</head>
+
+<body>
+
+<!-- 1. 문서 객체의 클래스 속성 추가 
+    <h1>Header-0</h1>
+    <h1>Header-1</h1>
+    <h1>Header-2</h1>
+-->
+
+<!-- 2. 문서 객체의 클래스 속성 제거 
+    <h1 class="item">Header-0</h1>
+    <h1 class="item select">Header-1</h1>
+    <h1 class="item">Header-2</h1>
+-->
+
+<!-- 3/4. 문서 객체의 속성 검사/추가
+    <img src="img/Koala.jpg" />
+    <img src="img/Penguins.jpg" />
+    <img src="img/Tulips.jpg" />
+ -->
+
+<!-- 5. 문서 객체의 속성 제거
+    <h1 data-index="0">Header-0</h1>
+    <h1 data-index="1">Header-1</h1>
+    <h1 data-index="2">Header-2</h1>
+ -->
+
+<!-- 6. 문서 객체의 스타일 검사
+    <h1 class="first">Header-0</h1>
+    <h1 class="second">Header-1</h1>
+    <h1 class="third">Header-2</h1>
+ -->
+
+<!-- 7/8. 문서 객체의 스타일 추가
+    <h1>Header-0</h1>
+    <h1>Header-1</h1>
+    <h1>Header-2</h1>
+ -->
+
+<!-- 9-1. 문서 객체의 내부 추가
+    <div></div>
+    <div></div>
+    <div></div>
+ -->
+
+<!-- 9-2. 문서 객체의 내부 추가
+    <h1>Header-0</h1>
+    <h1>Header-1</h1>
+    <h1>Header-2</h1>
+ -->
+
+<!-- 10. 문서 객체의 내부 제거 
+    <div>
+        <h1>Header-0</h1>
+        <h1>Header-1</h1>
+    </div>
+-->
+
+<!-- 14. 문서 객체의 삽입(2)
+    <div>
+       <b>데이터</b>
+       <ul id="name_region"></ul>
+    </div> 
+ -->
+
+<!-- 14. 문서 객체의 삽입(3)
+    <header>
+    	<h1>데이터</h1>
+    </header>
+ -->
+
+<!-- 15. 문서 객체의 이동 
+    <img src="img/Chrysanthemum.jpg" />
+    <img src="img/Desert.jpg" />
+    <img src="img/Hydrangeas.jpg" />
+    <img src="img/Koala.jpg" />
+    <img src="img/Penguins.jpg" />
+    <img src="img/Tulips.jpg" />
+-->
+
+<!-- 16. 문서 객체의 복제 
+    <h1>HEADER</h1>
+    <hr />
+    <div></div>
+    <hr />
+-->
+
+</body>
+</html>
