@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Events</title>
+
+<style type="text/css">
+/* 1-2) / 2. 이벤트 연결 */
+    .reverse {background:Black; color:White;}
+
+/* 4.매개변수 Context */
+    * { margin:0px; padding:0px }
+
+    div {
+        margin:5px; padding:3px;
+        border:3px solid black;
+        border-radius:10px;
+    }
+
+/* 8. 마우스 이벤트 */
+    .outer { 
+    	width:200px; height:200px; 
+    	background:Orange; padding:50px; 
+    	margin:10px;
+    }
+    .inner { 
+    	width:100%; height:100%; 
+    	background:Pink; 
+    }
+
+</style>
+
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+
+/* 1. 이벤트 연결1 
+// - on()
+// - 사용 형태
+//    1) $(selector).on(eventName, function(event){ });
+
+		$(function(){
+			// 이벤트 연결
+			$('h1').on('click', function(event){
+				$(this).html(function(index, html){
+					return html + '+';
+				});
+			});
+		});
+
+//    2) $(selector).on(object);
+
+		$(function(){
+			$('h1').on({
+				mouseenter: function(){$(this).addClass('reverse');},
+				mouseleave: function(){$(this).removeClass('reverse');}
+			});
+		});
+// */
+
+/* 2. 이벤트 연결2 
+// - hover():mouseenter 이벤트와 mouseleave 이벤트를 동시에 연결.
+// - $(selector).hover(function(event){}, function(event){});
+
+	$(function(){
+		$('h1').hover(function(){
+				$(this).addClass('reverse');
+			}, function(){
+				$(this).removeClass('reverse');
+			});
+	});
+// */
+
+/* 3. 이벤트 제거 
+// - off()   ---> one()
+	$(function(){
+		//이벤트 연결
+		$('h1').click(function(){
+			$(this).html('CLICK');
+			
+			// 이벤트 제거
+			$(this).off();
+		});
+	});
+// */
+
+/* 4. 매개변수 context 
+// - $(selector, context)
+//   . context:selector가 적용하는 범위를 한정.
+//   . 특정 부분의 선택자를 선택하고 싶을 때 사용하는 매개변수.
+
+	$(function(){
+		// 이벤트 연결
+		$('div').click(function(){
+			var header = $('h1', this).text();
+			var paragraph = $('p', this).text();
+			
+			alert(header + ' : ' + paragraph);
+		});
+	});
+// */
+
+/* 5. 이벤트 강제 발생 
+// - 사용 형태
+//   1) $(selector).trigger(eventName);
+
+	$(function(){
+		// 이벤트 연결
+		$('h1').click(function(){
+			$(this).html(function(index, html){
+				return html + '*';
+			});
+		});
+		
+		setInterval(function(){
+			//$('h1').last().trigger('click');
+			$('h1').last().click();
+		}, 1000);
+		
+	});
+
+//   2) $(selector).trigger(eventName, data);
+
+	$(function(){
+		$('h1').click(function(event, data1, data2){
+			alert(data1+' : '+data2);
+		});
+		
+		// 강제로 이벤트 발생
+		$('h1').eq(0).trigger('click', [273, 52]);
+	});
+// */
+
+
+/* 6. 기본 이벤트 제거 
+	$(function(){
+		$('a').click(function(event){
+			var e = event || window.event;
+			
+			$(this).css('background-color', 'blue');
+			
+			e.cancelBubble = true;
+			if(e.stopPropagation){
+				e.stopPropagation(); // 이벤트 전달 기능 제거.
+			}
+			
+			e.preventDefault();// (a 태그의) 기본 이벤트 제거.
+			
+		});
+		
+		$('h1').click(function(){
+			$(this).css('background-color', 'red');
+		});
+	});
+// */
+
+/* 7. 이벤트 통합 메서드 
+// - on():이벤트를 연결.
+// - off():이벤트를 제거.
+	$(function(){
+		$('div').on('click', function(){
+			$(this).clone().appendTo('body');
+		});
+	});
+// */
+
+/* 8. 마우스 이벤트 
+// - click : 마우스 클릭할 때 이벤트 발생.
+// - dbclick : 마우스 더블클릭할 때 이벤트 발생.
+// - mousedown : 마우스 버튼을 누를 때 이벤트 발생.
+// - mouseup : 마우스 버튼을 뗄 때 이벤트 발생.
+// - mouseenter : 마우스가 요소의 경계 외부에서 내부로 이동할 때 발생. 
+// - mouseleave : 마우스가 요소의 경계 내부에서 외부로 이동할 때 발생.
+// - mousemove : 마우스를 움직일 때 발생.
+// - mouseout : 마우스가 요소를 벗어날 때 발생.
+// - mouseover : 마우스가 요소 안에 들어올 때 발생.
+
+	$(function(){
+		$('.outer').mouseover(function(){
+			$('body').append('<h1>MOUSEOVER</h1>');
+		}).mouseenter(function(){ // 문서 객체의 안에 있는지 외부에 있는지만 따짐.
+			$('body').append('<h1>MOUSEENTER</h1>');
+		}).mouseleave(function(){
+			//$('body').append('<h1>MOUSELEAVE</h1>');
+		});
+	});
+// */
+
+/* 9. 키보드 이벤트
+// - keydown : 키보드가 눌러질 때 발생.
+// - keypress : 글자가 입력될 때 발생(한글지원x).
+// - keyup : 키보드가 떼어질 때 발생.
+
+	$(function(){
+		$('textarea').keyup(function(event){
+			// 남은 글자수를 구합니다.
+			var inputLength = $(this).val().length;
+			var remain = 150-inputLength;
+			
+			$('h1').html(remain);
+			
+			if(remain >= 0){
+				$('h1').css('color', 'black');
+			}else{
+				$('h1').css('color', 'red');
+			}
+		});
+	});
+// */
+
+
+</script>
+</head>
+
+<body>
+
+<!-- 1/2/3. 이벤트 연결/제거 
+    <h1>Header-0</h1>
+    <h1>Header-1</h1>         
+    <h1>Header-2</h1>
+-->
+
+<!-- 1-3) 
+    <div id="wrap">
+        <h1>Header</h1>
+    </div>
+-->
+
+<!-- 4. 매개변수 context 
+    <div>
+        <h1>Header1</h1>
+        <p>Paragraph1</p>
+    </div>
+    <div>
+        <h1>Header2</h1>
+        <p>Paragraph2</p>
+    </div>
+    <div>
+        <h1>Header3</h1>
+        <p>Paragraph3</p>
+    </div>
+-->
+
+<!-- 5-1). 이벤트 강제 발생 
+    <h1>Start: </h1>
+    <h1>Start: </h1>
+-->
+
+<!-- 5-2). 이벤트 강제 발생 
+    <h1>TRIGGER</h1>
+-->
+
+<!-- 6. 기본 이벤트 제거 
+    <h1>
+        <a href="https://www.naver.com">네이버</a>
+    </h1>
+-->
+
+<!-- 7. 이벤트 통합 메서드 
+    <div>
+        <h1>$(selector).on()</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+-->
+
+<!-- 8. 마우스 이벤트 
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+-->
+
+<!-- 9. 키보드 이벤트 
+    <div>
+        <p>지금 내 생각을</p>
+        <h1>150</h1>
+        <textarea cols="70" rows="5"></textarea>
+    </div>
+-->
+
+</body>
+</html>

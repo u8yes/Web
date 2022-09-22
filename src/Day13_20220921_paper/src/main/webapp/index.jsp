@@ -5,9 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+
+<style>
+
+
+
+</style>
+
 </head>
 <body>
 	<div>
+	<form>
 	<table border-color="green" border="1" width="700">
 		<tr>
 			<th>이름</th>
@@ -15,11 +25,15 @@
 		</tr>
 		<tr>
 			<th>암호</th>
-			<td><input type="text" formmethod="post"></td>
+			<td><input type="password" formmethod="post"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
-			<td><input type="tel" formmethod="post"></td>
+			<td><input type="tel" formmethod="post">
+			<label for=""> - </label>
+			<input type="tel" formmethod="post">
+			<label for=""> - </label>
+			<input type="tel" formmethod="post"></td>
 		</tr>
 		<tr>
 			<th>직업</th>
@@ -67,6 +81,7 @@
 			<td><input type="text" formmethod="post" value="자기를 소개하는 글을 쓰세요."></td>
 		</tr>
 	</table>
+	</form>
 	</div>
 	
 	
