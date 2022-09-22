@@ -27,8 +27,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-
+	alert();
 });
+
+<SCRIPT language="javaScript">
+
+
+
+</SCRIPT>
 </script>
 </head>
 <body>
@@ -104,8 +110,8 @@ $(document).ready(function(){
 		
 			<label></label>
 			
-			<input type="submit" class="btn btn-secondary" value="등록">
-			<input type="reset" class="btn btn-dark" value="취소" onclick="reset()">			 
+			<input type="submit" onsubmit="" class="btn btn-secondary" value="등록" >
+			<input type="reset" class="btn btn-dark" value="취소">			 
 				
 		
 			</th>
