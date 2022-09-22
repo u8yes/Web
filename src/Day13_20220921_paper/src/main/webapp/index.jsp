@@ -10,10 +10,18 @@
 	tr{
 		height: 50px;
 	}
-
+	th{
+		font-size: large;
+	}
+	td{
+		padding: 5px;
+	}
 	table{
 		background-color: gray;
+		border:thin;
+		border-color: green;
 	}
+	
 
 </style>
 <!-- 방법1. 직접 다운로드, src=""는 외부로 import해준다. 
@@ -27,14 +35,8 @@
 <script type="text/javascript">
 
 	function onClick(){
-		
-		$('div').click(function(){
-			var header = $('th', this).text();
-			var paragraph = $('td', this).text();
-			
-			alert(header + ' : ' + paragraph);
-		});
-		
+					
+			alert();
 		
 	}
 
@@ -45,24 +47,26 @@
 
 	<center>
 	<div style="padding-top: 150px;">
-	
+	<hr width="700">
 	<form action="" method="post">
-	<table border-color="green" border="1" width="800">
+	<section>간단한 회원 정보 입력 양식</section>
+	<table border-color="green" border="1" width="680">
 		<tr>
 			<th>이름</th>
-			<td><input type="text" formmethod="post"></td>
+			<td><input type="text" formmethod="post" size="28"></td>
 		</tr>
 		<tr>
 			<th>암호</th>
-			<td><input type="password" formmethod="post"></td>
+			<td><input type="password" formmethod="post" size="28"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
-			<td><input type="tel" formmethod="post">
+			<td>
+			<input type="tel" formmethod="post" size="5">
 			<label for=""> - </label>
-			<input type="tel" formmethod="post">
+			<input type="tel" formmethod="post" size="5">
 			<label for=""> - </label>
-			<input type="tel" formmethod="post"></td>
+			<input type="tel" formmethod="post" size="5"></td>
 		</tr>
 		<tr>
 			<th>직업</th>
@@ -79,11 +83,11 @@
 			<td>
 			
 			<div>
-			  <input type="radio" value="남성" id="inlineRadio1" name="gender">
-			  <label for="inlineRadio1">남성</label>
+			  <input type="radio" value="남" id="inlineRadio1" name="gender">
+			  <label for="inlineRadio1">남</label>
 			
-			  <input type="radio" value="여성" id="inlineRadio2" name="gender">
-			  <label for="inlineRadio2">여성</label>
+			  <input type="radio" value="여" id="inlineRadio2" name="gender">
+			  <label for="inlineRadio2">여</label>
 			</div>
 			
 		</tr>
@@ -107,27 +111,18 @@
 		</tr>
 		<tr>
 			<th>자기 소개하는 글</th>
-			<td><textarea name="title" rows="5" cols="90" class="" >자기를 소개하는 글을 쓰세요.</textarea></td>
+			<td><textarea name="title" rows="5" cols="70" class="" >자기를 소개하는 글을 쓰세요.</textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-		
 			<label></label>
-			
-			<input type="submit" onmousedown="onClick()" class="btn btn-secondary" value="등록" >
-			<input type="reset" class="" value="취소">			 
-				
-		
+			<input type="submit" onmousedown="onClick()" value="등록하기" >
+			<input type="reset" class="" value="취소하기">			 
 			</th>
 		</tr>
-	
-	
-	
 	</table>
 	</form>
 	</div>
-	
-	
 	
 	</center>
 </body>
