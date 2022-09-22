@@ -37,9 +37,17 @@
 	
 
 	function onClick(){
-				
 		
-		alert();
+		
+		
+		$(function(){
+			var inputValue = $('input').val();
+			
+			alert(inputValue);
+		});
+		
+		
+		
 		
 	}
 
@@ -56,7 +64,7 @@
 	<table border-color="green" border="1" width="680">
 		<tr>
 			<th>이름</th>
-			<td><input type="text" formmethod="post" size="28"></td>
+			<td><input type="text" formmethod="post" size="28" ></td>
 		</tr>
 		<tr>
 			<th>암호</th>
