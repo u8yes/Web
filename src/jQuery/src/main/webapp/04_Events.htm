@@ -136,28 +136,30 @@
  
  //다른 모든 버전은 event로 new 해서 참조변수가 담아진다.
  
-
+// */
 	$(function(){
 		$('a').click(function(event){
 			var e = event || window.event;
 			
 			$(this).css('background-color', 'blue');
 			
-			e.cancelBubble = true;
+			e.cancelBubble = true;	
+			// 익스플로러8버전에서는 바로 영향을 주지 않게 cancelBubble속성에다가 propagation()과 같은 기능을 줌.
+			
 			if(e.stopPropagation){
-				e.stopPropagation(); // 이벤트 전달 기능 제거.
+				e.stopPropagation(); // 이벤트 전달 기능 제거. a태그만 영향을 주고 h1까지는 영향을 주지말라고 명령
 			}
 			
 			e.preventDefault();// (a 태그의) 기본 이벤트 제거.
 			
 		});
-		
+			
 		$('h1').click(function(){
 			$(this).css('background-color', 'red');
 		});
 	});
 
-// */
+
 
 /* 7. 이벤트 통합 메서드 
 // - on():이벤트를 연결.
@@ -254,11 +256,11 @@
     <h1>TRIGGER</h1>
 -->
 
-<!-- 6. 기본 이벤트 제거 
+<!-- 6. 기본 이벤트 제거 -->
     <h1>
         <a href="https://www.naver.com">네이버</a>
     </h1>
--->
+
 
 <!-- 7. 이벤트 통합 메서드 
     <div>
