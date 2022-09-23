@@ -6,6 +6,7 @@
 <script type="text/javascript">
 	window.onload = function(){
 		var xhr;
+		var container;
 		
 		if(window.XMLHttpRequest){
 			xhr = new XMLHttpRequest();	// Ajax는 일반적으로는 XMLHttpRequest로 구현이 됨.
@@ -15,23 +16,28 @@
 			throw new Error("Ajax가 지원하지 않는 브라우저입니다.");
 		}
 		
+		container = document.getElementById('container');
+		
+		container.onclick = function(){
+			xhr.open('get', 'resource.html');	// get방식으로 resource.html를 send()요청한다. open = 1번
+			xhr.send();		// send() = 2번
+		};
+		
 		xhr.onreadystatechange = function(){
-			if(xhr.readyState == 4){
+			if(xhr.readyState == 4){	// 응답으로 잘 받고 완료는 4번.
 				if(xhr.status >= 200 && xhr.status < 300){
-					document.getElementById('container').innerHTML = xhr.responseText;	
-					// Element를 지정한 것의 텍스트를 전체를 말한다.
+					container.innerHTML = xhr.responseText;	
+					// Element를 지정한 것의 텍스트를 전체를 말한다. 
+					// 오류나면 404번 오류, 문법적인 오류가 있으면 500번대 오류
 				}
 			}
 		};
-		
-		
-		
 	};	// 전체를 다 훑고 나서 onload를 실행.
 </script>
 </head>
 <body>
 	
-	<div id="container"></div>
+	<div id="container">서버 요청</div>
 	
 </body>
 </html>
