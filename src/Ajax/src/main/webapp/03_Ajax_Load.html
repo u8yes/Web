@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>서버의 데이터 일부만 대상 엘리먼트에 삽입하기-load()</title>
+<style type="text/css">
+	div{
+		width: 180px;
+		height: 80px;
+		margin: 3px;
+		float: left;  /* 수평 정렬 */
+		
+	}
+</style>
+
+<script src="./js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">	// 주소를 하나씩 select하면서 채워나갈 때 Ajax로 구현.
+	$(function(){
+		$('#menu1').click(function(){
+			$('#message1').load('menu.html');		// 로그인 화면을 바꾸게 바로 load해줌.
+			return false;	// false의 의도는 click이벤트는 한번만 발생하게 만들어줌.
+		})
+	})
+
+	$(function(){
+		$('#menu2').click(function(){
+			$('#message2').load('menu.html li');		
+			return false;	
+		})
+	})
+</script>
+
+</head>
+<body>
+	
+	<div>
+		<a href="#" id="menu1">메뉴 보기1</a>	<!-- 필수 속성 -->
+		<span id="message1"></span>	<!-- 인라인 영역으로 -->
+	</div>
+
+	<div>
+		<a href="#" id="menu2">메뉴 보기2</a>	
+		<span id="message2"></span>
+	</div>
+	
+</body>
+</html>
