@@ -6,17 +6,30 @@
             width: 50px; height: 50px;
             margin:3px;
             background-color: orange;
-            position: relative;
-        }
+            position: relative;	/* relative 독립적으로 사용하겠다. */	
+        }	
     </style>
     <script src="./js/jquery-3.6.1.min.js"></script>
     <script>
-        
+        $(function(){
+        	$('div').hover(function(){	/* 영역 안으로 들어왔을 때 구현하고 기능 */
+        		$(this).animate({
+        			left:1000
+        		},'fast');
+        	},function(){	/* 영역 안으로 들어왔을 때 구현하고 기능 */
+        		$(this).animate({
+        			left:0
+        		},'fast');
+        	});
+        })
     </script>
 </head>
 <body>
-    <div></div><div></div>
-    <div></div><div></div>
-    <div></div><div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
 </body>
 </html>

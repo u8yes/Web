@@ -136,15 +136,16 @@
  
  //다른 모든 버전은 event로 new 해서 참조변수가 담아진다.
  
-// */
+
 	$(function(){
+		// a 태그는 인라인 영역(텍스트의 크기만큼만 영역을 차지함), 옆으로 추가되는 형식.
 		$('a').click(function(event){
 			var e = event || window.event;
 			
 			$(this).css('background-color', 'blue');
 			
 			e.cancelBubble = true;	
-			// 익스플로러8버전에서는 바로 영향을 주지 않게 cancelBubble속성에다가 propagation()과 같은 기능을 줌.
+			// 익스플로러8버전에서는 바로 영향을 주지 않게 cancelBubble속성에다가 stopPropagation()과 같은 기능을 줌.
 			
 			if(e.stopPropagation){
 				e.stopPropagation(); // 이벤트 전달 기능 제거. a태그만 영향을 주고 h1까지는 영향을 주지말라고 명령
@@ -154,11 +155,12 @@
 			
 		});
 			
+		// h1은 블록영역이라서 한줄 전체를 차지한다. a태그 앵커를 벗어나서 클릭을 해야함. 아래로 추가되는 형식.
 		$('h1').click(function(){
 			$(this).css('background-color', 'red');
 		});
 	});
-
+// */
 
 
 /* 7. 이벤트 통합 메서드 
@@ -166,10 +168,12 @@
 // - off():이벤트를 제거.
 	$(function(){
 		$('div').on('click', function(){
-			$(this).clone().appendTo('body');
+			$(this).clone().appendTo('body');	// body뒤로 clone() 복사해라.
 		});
 	});
-// */
+// */	
+	
+
 
 /* 8. 마우스 이벤트 
 // - click : 마우스 클릭할 때 이벤트 발생.
@@ -181,6 +185,7 @@
 // - mousemove : 마우스를 움직일 때 발생.
 // - mouseout : 마우스가 요소를 벗어날 때 발생.
 // - mouseover : 마우스가 요소 안에 들어올 때 발생.
+
 
 	$(function(){
 		$('.outer').mouseover(function(){
@@ -213,7 +218,7 @@
 			}
 		});
 	});
-// */
+	// */
 
 </script>
 </head>
@@ -256,11 +261,11 @@
     <h1>TRIGGER</h1>
 -->
 
-<!-- 6. 기본 이벤트 제거 -->
+<!-- 6. 기본 이벤트 제거 
     <h1>
         <a href="https://www.naver.com">네이버</a>
     </h1>
-
+-->
 
 <!-- 7. 이벤트 통합 메서드 
     <div>

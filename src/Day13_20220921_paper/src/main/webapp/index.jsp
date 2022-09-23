@@ -40,8 +40,11 @@
 		
 		
 		
-		$(function(){
+		$(function(index){
+			
 			var inputValue = $('input').val();
+			var textArea = $('textarea').val();
+			
 			
 			alert(inputValue);
 		});
