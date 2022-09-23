@@ -4,7 +4,29 @@
 <meta charset="UTF-8">
 <title>자바스크립트로 Ajax(asynchronous Javascript and Xml) 구현하기</title>
 <script type="text/javascript">
-	window.onload = function(){};
+	window.onload = function(){
+		var xhr;
+		
+		if(window.XMLHttpRequest){
+			xhr = new XMLHttpRequest();	// Ajax는 일반적으로는 XMLHttpRequest로 구현이 됨.
+		}else if(window.ActiveXObject){
+			xhr = new ActiveXObject("Msxmi2.XMLHTTP");	// window 익스플러로8버전 밑은 ActiveXObject로만 구현이 됨.
+		}else{
+			throw new Error("Ajax가 지원하지 않는 브라우저입니다.");
+		}
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status >= 200 && xhr.status < 300){
+					document.getElementById('container').innerHTML = xhr.responseText;	
+					// Element를 지정한 것의 텍스트를 전체를 말한다.
+				}
+			}
+		};
+		
+		
+		
+	};	// 전체를 다 훑고 나서 onload를 실행.
 </script>
 </head>
 <body>
