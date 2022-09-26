@@ -15,7 +15,15 @@
 <script type="text/javascript">
 	$(function(){
 		$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?" 
-				+ "tags=raccoon&tagmode=any&format=json&jsoncallback=?", function(data){});
+				+ "tags=raccoon&tagmode=any&format=json&jsoncallback=?", 
+		function(data){
+			$.each(data.items, function(index, item){
+				$("<img />").attr("src", item.media.m).appendTo("#images");
+				if(index == 4){
+					return false;	// 메서드 탈출하기 위해 false;
+				}
+			});	// items 객체를 item에다가 index(i라고 이름지어도 상관없음)순서대로 넣어준다
+		});
 	});
 </script>
 

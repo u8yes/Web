@@ -5,8 +5,17 @@
 <title>Script 로드하기-$.getScript()</title>
 
 <script src="./js/jquery-3.6.1.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-	
+<script type="text/javascript">	
+	$(function(){
+		$.getScript("./js/test.js");	// 바로 다이렉트로 요청할 수 있음.
+		
+		$('#submit').click(function(){
+			var msg = call($('.name').val());
+			$('#message').html(msg);
+			
+			return false;
+		});
+	});
 </script>
 
 </head>

@@ -6,7 +6,19 @@
 
 <script src="./js/jquery-3.6.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function(){
+		$('#submit').click(function(){
+			var id = $('.userid').val();
+			var pw = $('.userpw').val();
+			var sendData = 'userid=' + id + '&userpw=' + pw;
+			
+			$.post('loginCheck.jsp', sendData, function(msg){
+				$('#message').html(msg);
+			});
+			
+			return false;
+		});
+	});
 
 </script>
 

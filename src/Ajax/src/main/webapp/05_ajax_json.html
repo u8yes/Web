@@ -12,7 +12,29 @@
 
 <script src="./js/jquery-3.6.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function(){
+		$.getJSON('item.json',function(data, textStatus){
+			$('#treeData').append(
+				"<tr>"+
+					"<th>id</th>"+
+					"<th>name</th>"+
+					"<th>price</th>"+
+					"<th>description</th>"+
+				"</tr>"
+			);
+			
+			$.each(data, function(){
+				$('#treeData').append(
+				"<tr>"+
+					"<td>"+ this.id+"</td>"+
+					"<td>"+ this.name +"</td>"+
+					"<td>"+ this.price +"</td>"+
+					"<td>"+ this.description +"</td>"+
+				"</tr>"		
+				);
+			});
+		});
+	});
 
 </script>
 
